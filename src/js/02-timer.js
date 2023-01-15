@@ -62,8 +62,13 @@ function addLeadingZero(value) {
 }
 
 btnStart.addEventListener('click', event => {
-  setInterval(function () {
+  let intervalID = setInterval(function () {
     const deltaTime = selectedDate - Date.now();
+
+    if (deltaTime < 0) {
+      return;
+    }
+
     const dateObj = convertMs(deltaTime);
     const { days, hours, minutes, seconds } = dateObj;
 
