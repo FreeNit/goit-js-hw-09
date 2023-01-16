@@ -1,9 +1,9 @@
 // Описаний в документації
 import flatpickr from 'flatpickr';
-// Notiflix
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // Додатковий імпорт стилів
 import 'flatpickr/dist/flatpickr.min.css';
+// Notiflix
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const btnStart = document.querySelector('button[data-start]');
 const daysEl = document.querySelector('span[data-days]');
@@ -66,12 +66,14 @@ function addLeadingZero(value) {
 btnStart.addEventListener('click', event => {
   let intervalID = setInterval(function () {
     const deltaTime = selectedDate - Date.now();
+    const deltaInSeconds = Number(((deltaTime % 60000) / 1000).toFixed(0));
 
-    if (deltaTime < 0) {
-      return;
+    if (deltaInSeconds <= 0) {
+      clearInterval(intervalID);
     }
 
     const dateObj = convertMs(deltaTime);
+    console.log(dateObj);
     const { days, hours, minutes, seconds } = dateObj;
 
     daysEl.textContent = days;
