@@ -5,7 +5,11 @@ const bodyEl = document.querySelector('body');
 
 let intervalID;
 
+btnStop.setAttribute('disabled', '');
+
 btnStart.addEventListener('click', event => {
+  event.currentTarget.setAttribute('disabled', '');
+  btnStop.removeAttribute('disabled');
   let generatedColor;
 
   intervalID = setInterval(() => {
@@ -14,12 +18,14 @@ btnStart.addEventListener('click', event => {
   }, 1000);
 });
 
-btnStop.addEventListener('click', () => {
+btnStop.addEventListener('click', event => {
   if (!intervalID) {
     return;
   }
+
   clearInterval(intervalID);
   btnStart.removeAttribute('disabled');
+  event.currentTarget.setAttribute('disabled', '');
 });
 
 function getRandomHexColor() {
