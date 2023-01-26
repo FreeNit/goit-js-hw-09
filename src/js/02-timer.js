@@ -64,6 +64,8 @@ function addLeadingZero(value) {
 }
 
 btnStart.addEventListener('click', event => {
+  event.currentTarget.setAttribute('disabled', '');
+
   let intervalID = setInterval(function () {
     const deltaTime = selectedDate - Date.now();
     const deltaInSeconds = Number(((deltaTime % 60000) / 1000).toFixed(0));

@@ -44,4 +44,5 @@ btnCreatePromise.addEventListener('click', () => {
       });
     delay += delayStep;
   }
+  formEL.reset();
 });
